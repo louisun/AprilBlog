@@ -1,12 +1,12 @@
 <VirtualHost *:80>
 	ServerName roadsheep.com
 
-	ServerAdmin m1m0rycn@outlook.com
+	ServerAdmin luyang.sun@outlook.com
 
 	WSGIDaemonProcess roadsheep.com home=%BASE_DIR% python-path=%PY_LIB%
 	WSGIProcessGroup roadsheep.com
 
-	WSGIScriptAlias / %BASE_DIR%/April_blog/wsgi.py
+	WSGIScriptAlias / %BASE_DIR%/AprilBlog/wsgi.py
 
 
 

@@ -44,8 +44,8 @@ if [ "${IS_FIRST_DEPLOY}" = true ]; then
     sudo mv -f "roadsheep.com.conf" "/etc/apache2/sites-available/roadsheep.com.conf"
     sudo a2ensite roadsheep.com
     sudo service apache2 reload
-    sudo chown -R www-data:www-data .
-    sudo chown www-data:www-data db.sqlite3
+    sudo chown -R www-:www-data .
+    sudo chown :www-data db.sqlite3
 fi
 
 # apache reload
