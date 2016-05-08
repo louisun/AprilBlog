@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Louis's Blog{% endblock %}
+{% block description %}Louis的主页{%endblock%}
+
+{% block pagecss %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/gfm.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}"/>
+{% endblock pagecss %}
+
+
+{% block content %}
+{% autoescape off %}
+{% for blog in blog_list %}
+<article>
+    <header>
+        <p class="meta">
+            <time pubdate="{{ blog.publish_time }}" data-updated="{{ blog.update_time }}">
+                {{ blog.publish_time|date:'M'|upper }}
+                {{ blog.publish_time|date:"dS"|upper}}, {{ blog.publish_time.year }}
+            </time>
+        </p>
+        <h1 class="title"><a href="{{blog.get_absolute_url}}">{{blog.title}}</a></h1>
+    </header>
+
+    <section class="post-excerpt">
+        <div class="read-more">
+            {{blog.snippet}}
+
+            <p class="text-right">
+                <a href="{{blog.get_absolute_url}}">READ MORE&raquo </a>
+            </p>
+        </div>
+    </section>
+</article>
+
+{% endfor %}
+
+{% if is_paginated %}
+<div class="pagination">
+
+    {% if page_obj.has_previous %}
+    <a class="prev" href="/?page={{page_obj.previous_page_number}}">← Newer</a>
+    {% endif %}
+
+    <a class="page-number">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+
+    {% if page_obj.has_next %}
+    <a class="next" href="/?page={{ page_obj.next_page_number }}">Older →</a>
+    {% endif %}
+
+</div>
+
+{% endif %}
+{% endautoescape %}
+
+{% endblock content %}

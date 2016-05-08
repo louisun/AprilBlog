@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Louis's Article{% endblock %}
+{% block description %}Louis的博文{%endblock%}
+
+{% block pagecss %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/gfm.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/tag.css' %}"/>
+{% endblock pagecss %}
+
+
+{% block content %}
+{% autoescape off %}
+<div class="tag-cloud">
+    <div class="tag-cloud-title">
+        Total {{ tag_list|length }} Tags
+    </div>
+    <div class="tag-cloud-tags">
+
+        {% for tag in tag_list %}
+        <a href="{% url 'blog:tag' tag.title %}" style="font-size:{{tag.font_size}}px; color:{{tag.color}}">{{tag.title}}</a>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endautoescape %}
+
+{% endblock content %}
