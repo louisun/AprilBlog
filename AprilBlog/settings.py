@@ -45,7 +45,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'April_blog.urls'
+ROOT_URLCONF = 'AprilBlog.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATE_LOADERS = (
     # 'django.template.loaders.eggs.Loader',
 )
 
-WSGI_APPLICATION = 'April_blog.wsgi.application'
+WSGI_APPLICATION = 'AprilBlog.wsgi.application'
 
 DATABASES = {
     'default': {
