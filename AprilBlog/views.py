@@ -32,7 +32,7 @@ def githook(request):
     if not request.META.get('HTTP_X_GITHUB_EVENT', '') == 'push':
         return HttpResponse('Event error')
 
-    return HttpResponse('Test')
+
 
     try:
         # check sha1 signature
@@ -57,4 +57,4 @@ def githook(request):
         else:
             return HttpResponse('Not master branch, ignore')
     except Exception as e:
-        return HttpResponse(str(e))
+        return HttpResponse('Something\'s wrong:' + str(e))
