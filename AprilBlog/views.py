@@ -36,7 +36,7 @@ def githook(request):
 
     try:
         # check sha1 signature
-        name, req_sha1 = request.META.get('HTTP_X_HUB_SIGNATURE', '').split('=')
+        name, req_sha1 = request.META.get('X_HUB_SIGNATURE', '').split('=')
         if name != 'sha1':
             return HttpResponse('Signature format error')
         HOOK_SECRET_KEY = get_object_or_404(GithubHookSecret, pk=1)
