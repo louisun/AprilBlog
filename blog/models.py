@@ -177,4 +177,5 @@ class Tag(models.Model):
 
 
 class GithubHookSecret(models.Model):
+    description = models.CharField(max_length=255)
     secret = models.CharField(max_length=255)
