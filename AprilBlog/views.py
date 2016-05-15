@@ -20,8 +20,10 @@ def handler404(request):
     return render(request, '404.html', status=404)
 
 
+
 @csrf_exempt
 def githook(request):
+
     # check User-agent
     if not request.META.get('HTTP_USER_AGENT', '').startswith('GitHub-Hookshot'):
         return HttpResponse('UA error')
@@ -29,6 +31,8 @@ def githook(request):
     # check event
     if not request.META.get('HTTP_X_GITHUB_EVENT', '') == 'push':
         return HttpResponse('Event error')
+
+    return HttpResponse('Test')
 
     try:
         # check sha1 signature
@@ -49,7 +53,7 @@ def githook(request):
             script = os.path.join(settings.BASE_DIR, 'deploy.sh')
             proc = subprocess.Popen([script], stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT)
-            return HttpResponse('OK')
+            return HttpResponse(proc.communicate()[0])
         else:
             return HttpResponse('Not master branch, ignore')
     except Exception as e:
