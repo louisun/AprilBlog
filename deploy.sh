@@ -4,7 +4,7 @@
 #   Auto deploy site to apache.
 #
 
-source ~/sh-realpath/realpath.sh
+source ../sh-realpath/realpath.sh
 
 echo `whoami`
 
